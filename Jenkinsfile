@@ -13,7 +13,7 @@ pipeline {
 		}
 		stage ("copy") {
 			steps {
-				sh "docker cp /mnt/project/game-of-life/gaodlife-web/target/gameoflife.war np://usr/local/tomcat/webapps"
+				sh "docker cp /mnt/project/gameoflife-web/target/gameoflife.war np://usr/local/tomcat/webapps"
 			}
 		}
 	
