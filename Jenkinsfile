@@ -16,15 +16,15 @@ pipeline {
 				sh "git clone https://github.com/Nihalpatil7/dockerfile.git "
 			}
 		}
-		stage ("docker-build") {
+		stage ("docker-compose") {
 			steps {
-				sh "cp /mnt/project/gameoflife-web/target/gameoflife.war /mnt/project/dockerfile/"
-				sh "docker build -t test:1.0 /mnt/project/dockerfile/"
+				sh "cp /mnt/project/gameoflife-web/target/gameoflife.war /mnt/project/server/"
+				sh "cp /mnt/project/dockerfile/docker-compose.yaml /mnt/project/"
 			}
 		}
-		stage ("docker-container") {
+		stage ("docker-compose-run") {
 			steps {
-				sh "docker run -itdp 8082:8080 --name np7 test:1.0"
+				sh "docker-compose up -d"
 			}
 		}
 	}
