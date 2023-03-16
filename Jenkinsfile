@@ -24,7 +24,7 @@ pipeline {
 		}
 		stage ("docker-container") {
 			steps {
-				sh "docker run -itdp 8082:8080 --name np test:1.0"
+				sh "docker run -itdp 8082:8080 --name np7 test:1.0"
 			}
 		}
 	}
