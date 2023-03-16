@@ -18,7 +18,7 @@ pipeline {
 		}
 		stage ("docker-build") {
 			steps {
-				sh "cp /mnt/project/gameoflife-web/target/gameoflife.war /mnt/project/"
+				sh "cp /mnt/project/gameoflife-web/target/gameoflife.war /mnt/project/dockerfile/"
 				sh "docker build -t test:1.0 /mnt/project/dockerfile/"
 			}
 		}
