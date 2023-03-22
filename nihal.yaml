@@ -16,7 +16,6 @@
         name: np
         image: tomcat
         state: started
-        pull: always
         expose:
         - 8080
         ports:
