@@ -1,0 +1,23 @@
+---
+#target section
+- hosts: devenv[0]
+  user: np
+  become: yes
+  connection: ssh
+  gather_facts: yes
+  
+  tasks:
+    - name : install docker
+      action: yum pkg=docker state=present
+    - name: start docker
+      action: service name=docker state=started
+    - name: pull tomcat
+      docker:
+        name: np
+        image: tomcat:9
+        state: started
+        pull: always
+        expose:
+        - 8080
+        ports:
+        - "8081:8080"
