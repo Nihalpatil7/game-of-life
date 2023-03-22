@@ -14,7 +14,7 @@
     - name: pull tomcat
       docker:
         name: np
-        image: tomcat:9
+        image: tomcat
         state: started
         pull: always
         expose:
