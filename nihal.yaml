@@ -12,7 +12,7 @@
     - name: start docker
       action: service name=docker state=started
     - name: pull tomcat
-      docker:
+      docker_container:
         name: np
         image: tomcat
         state: started
