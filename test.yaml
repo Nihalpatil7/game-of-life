@@ -25,4 +25,4 @@
     - name: permission to gameoflife
       command: sudo chmod -R 777 /mnt/apache-tomcat-9.0.73/webapps/gameoflife.war
     - name: start-tomcat
-      command: /mnt/apache-tomcat-9.0.73/bin/./startup.sh
+      command: nohup /mnt/apache-tomcat-9.0.73/bin/startup.sh
