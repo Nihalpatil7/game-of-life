@@ -12,11 +12,17 @@
     - name: start docker
       action: service name=docker state=started
     - name: pull tomcat
+      docker_image:
+        name: tomcat
+        source: pull
+        tag : 9
+    - name: run tomcat
       docker_container:
         name: np
         image: tomcat
         state: started
-        expose:
-        - 8080
+        detach: true
+        exposed_ports:
+          - 8080
         ports:
-        - "8081:8080"
+          - "8081:8080"
