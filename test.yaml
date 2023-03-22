@@ -22,5 +22,7 @@
       action: yum pkg=java-1.8.0-openjdk-devel.x86_64 state=present
     - name: copy gameoflife
       action: copy src=/mnt/project/gameoflife-web/target/gameoflife.war dest=/mnt/apache-tomcat-9.0.73/webapps/
+    - name: permission to gameoflife
+      command: sudo chmod -R 777 /mnt/apache-tomcat-9.0.73/webapps/gameodlife.war
     - name: start-tomcat
       command: /mnt/apache-tomcat-9.0.73/bin/./startup.sh
