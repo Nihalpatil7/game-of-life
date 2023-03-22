@@ -13,7 +13,7 @@ pipeline {
 		}
 		stage ("game-of-life-deploy") {
 			steps {
-				sh "ansible-playbook nihal.yaml"
+				sh "ansible-playbook test.yaml"
 			}
 		}	
 	}
