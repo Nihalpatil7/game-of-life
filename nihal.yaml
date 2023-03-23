@@ -8,9 +8,23 @@
   
   tasks:
     - name : install docker
-      action: yum pkg=docker state=present
+      action: yum pkg=docker-ce-18.06.3.ce-3.e17.x86_64 state=present
     - name: start docker
       action: service name=docker state=started
+    - name: install
+      command: pip3 install docker-py
+    - name: pull tomcat
+      docker_image:
+         name: tomcat:9.0.73
+         tag: 9.0.73
+         source: pull
+      register: z
+    - name: creating volume
+      file:
+        path: /mnt/data
+        state: directory
+    - name: copy gameoflife
+      action: copy src=/mnt/project/gameoflife-web/target/gameoflife.war dest=/mnt/data
     - name: run tomcat
       docker_container:
         name: np
@@ -20,4 +34,6 @@
         exposed_ports:
           - 8080
         ports:
-          - "8081:8080"
+          - 8081:8080
+        volumes:
+          - /mnt/data:/var/lib/tomcat/webapps
