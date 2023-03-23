@@ -5,7 +5,7 @@
   become: yes
   connection: ssh
   gather_facts: yes
-  
+
   tasks:
     - name : install docker
       action: yum pkg=docker state=present
@@ -23,6 +23,8 @@
       file:
         path: /mnt/data
         state: directory
+    - name: permission
+      command: chmod -R 777 /mnt
     - name: copy gameoflife
       action: copy src=/mnt/project/gameoflife-web/target/gameoflife.war dest=/mnt/data
     - name: run tomcat
@@ -36,4 +38,6 @@
         ports:
           - 8081:8080
         volumes:
-          - /mnt/data:/var/lib/tomcat/webapps
+          - /mnt/data:/var/local/tomcat/webapps
+    - name: docker copy
+      command: docker cp /mnt/data/gameoflife.war np:/usr/local/tomcat/webapps
