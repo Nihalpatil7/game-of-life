@@ -11,15 +11,12 @@
       action: yum pkg=docker state=present
     - name: start docker
       action: service name=docker state=started
-    - name: pull tomcat
-      docker_image:
-        name: tomcat
-        source: pull
-        tag : latest
     - name: run tomcat
       docker_container:
         name: np
-        image: tomcat
+        image: tomcat:9.0.73
+        volume:
+          - "/mnt/project/gameoflife-web/target:/var/lib/tomcat/webapps"
         state: started
         detach: true
         exposed_ports:
