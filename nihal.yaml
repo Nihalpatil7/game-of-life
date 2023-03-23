@@ -15,8 +15,6 @@
       docker_container:
         name: np
         image: tomcat:9.0.73
-        volume:
-          - "/mnt/project/gameoflife-web/target:/var/lib/tomcat/webapps"
         state: started
         detach: true
         exposed_ports:
